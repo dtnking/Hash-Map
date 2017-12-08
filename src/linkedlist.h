@@ -1,5 +1,7 @@
 #ifndef _LINKEDLIST_H
 #define _LINKEDLIST_H
+#include "Data.h"
+#include "Compare.h"
 
 typedef struct Item Item;
 typedef struct LinkedList LinkedList;
