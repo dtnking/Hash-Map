@@ -3,7 +3,7 @@
 #include <malloc.h>
 #include "linkedlist.h"
 #include "Data.h"
-#include "IntegerKeyCompare.h"
+#include "hashMapInteger.h"
 
 void setUp(void){}
 
