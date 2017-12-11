@@ -4,25 +4,27 @@
 #include <stdio.h>
 
 void hashMapInit(HashTable *table, int size){
-  table->list = (LinkedList **)calloc(size * SIZE_FACTOR , sizeof(LinkedList));
+  table->list = (LinkedList *)calloc(size * SIZE_FACTOR , sizeof(LinkedList));
   table->size = size;
 }
 
 void _hashMapAdd(HashTable *table,uint32_t key, void *data, int index, Compare compareFunc){
   Item *newItem = (Item *)malloc(sizeof(Item));
   createNew(newItem,data,NULL);
-  if(index < table->size){
-  if(listSearch(&table->list[index],key,compareFunc)==NULL)
-    listAdd(&table->list[index],newItem);
-  }
+  if(index < table->size)
+    listAdd(&table->list[index],newItem,key,compareFunc);
 }
 
 void *_hashMapSearch(HashTable *table,uint32_t key,int index,Compare compareFunc){
+  if(index>=table->size)
+    return NULL;
   return listSearch(&table->list[index],key,compareFunc);
 }
 
 void *_hashMapRemove(HashTable *table, uint32_t key, int index, Compare compareFunc){
-  return listRemove1(&table->list[index],key,compareFunc);
+  // if(index>=table->size)
+  //   throwException
+  return listRemove(&table->list[index],key,compareFunc);
 
   //Free some memory
 }

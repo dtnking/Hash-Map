@@ -1,6 +1,7 @@
 #ifndef _HASHMAP_H
 #define _HASHMAP_H
 #include "stdint.h"
+#include "Compare.h"
 #include "linkedlist.h"
 
 #define SIZE_FACTOR   3
@@ -19,7 +20,7 @@ void _hashMapAdd(HashTable *table,uint32_t key, void *data, int index, Compare c
 void *_hashMapSearch(HashTable *table,uint32_t key,int index,Compare compareFunc);
 void *_hashMapRemove(HashTable *table, uint32_t key, int index, Compare compareFunc);
 uint32_t hashUsingModulo(uint32_t value,uint32_t range);
-void hashMapAddInteger(HashTable *table, int data);
+// void hashMapAddInteger(HashTable *table, int data);
 void hashMapSearch(HashTable *table, uint32_t key);
 void hashMapRemove(HashTable *table, uint32_t key);
 #endif // _HASHMAP_H
