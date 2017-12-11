@@ -22,8 +22,8 @@ void *_hashMapSearch(HashTable *table,uint32_t key,int index,Compare compareFunc
 }
 
 void *_hashMapRemove(HashTable *table, uint32_t key, int index, Compare compareFunc){
-  // if(index>=table->size)
-  //   throwException
+  if(index>=table->size)
+     Throw(createException("Data is out of boundary"),HASH_BOUNDARY_ERROR);
   return listRemove(&table->list[index],key,compareFunc);
 
   //Free some memory
