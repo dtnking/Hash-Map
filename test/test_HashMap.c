@@ -4,6 +4,8 @@
 #include "linkedlist.h"
 #include "Data.h"
 #include "hashMapInteger.h"
+#include "Exception.h"
+#include "CException.h"
 
 void setUp(void){}
 

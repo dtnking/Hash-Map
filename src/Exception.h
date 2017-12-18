@@ -1,6 +1,11 @@
 #ifndef _EXCEPTION_H
 #define _EXCEPTION_H
 
+
+#define HASH_BOUNDARY_ERROR  0
+#define HASH_DATA_NULL 			 1
+#define HASH_KEY_ERROR 			 2
+
 typedef struct Exception Exception;
 typedef Exception* ExceptionPtr;
 struct Exception{

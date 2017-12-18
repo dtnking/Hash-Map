@@ -3,9 +3,11 @@
 #include "Data.h"
 #include "Compare.h"
 #include "HashMap.h"
+#include "CException.h"
+#include "Exception.h"
 int integerKeyCompare(uint32_t key,Data *data);
-void *hashMapRemoveInteger(HashTable *table, uint32_t key, int index);
-void *hashMapSearchInteger(HashTable *table,uint32_t key,int index);
-void hashMapAddInteger(HashTable *table,uint32_t key, char *data, int index);
+void hashMapRemoveInteger(HashTable *table, uint32_t key);
+void *hashMapSearchInteger(HashTable *table,uint32_t key);
+void hashMapAddInteger(HashTable *table,uint32_t key, int data);
 
 #endif // _HASHMAPINTEGER_H

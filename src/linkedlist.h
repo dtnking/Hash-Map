@@ -2,13 +2,15 @@
 #define _LINKEDLIST_H
 #include "Data.h"
 #include "Compare.h"
+#include "Exception.h"
+#include "CException.h"
 
 typedef struct Item Item;
 typedef struct LinkedList LinkedList;
 
 struct Item{
 	Item *next;
-	void *data;
+	Data *data;
 };
 
 struct LinkedList{
