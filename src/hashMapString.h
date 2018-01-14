@@ -5,6 +5,7 @@
 #include "CException.h"
 #include "Exception.h"
 
+int stringKeyCompare(uint32_t key,Data *data);
 void hashMapAddString(HashTable *table,uint32_t key, char *data);
 void *hashMapSearchString(HashTable *table,uint32_t key);
 void *hashMapRemoveString(HashTable *table, uint32_t key);

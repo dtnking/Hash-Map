@@ -2,12 +2,19 @@
 
 
 CEXCEPTION_T ex;
-int compareString(char *str,char *strRef){
-  return !strcmp(str,strRef);
+int stringKeyCompare(uint32_t key,Data *data){
+  return key == data->key;
 }
+
 void hashMapAddString(HashTable *table,uint32_t key, char *data){
   Try{
-    _hashMapAdd(table,key,data,hashUsingModulo(key,table->size),(Compare)compareString);
+    int hashIndex = hashUsingModulo(key,table->size);
+    if(data == (void *)(intptr_t)NULL){
+      Throw(createException("Data to be added cannot be NULL", HASH_DATA_NULL));
+    }else{
+      Data *dataVal = dataCreate(key,data);
+      _hashMapAdd(table,key,dataVal,hashIndex,(Compare)stringKeyCompare);
+    }
   }Catch(ex){
       Throw(ex);
  }
@@ -15,7 +22,7 @@ void hashMapAddString(HashTable *table,uint32_t key, char *data){
 
 void *hashMapSearchString(HashTable *table,uint32_t key){
   Try{
-    _hashMapSearch(table,key,hashUsingModulo(key,table->size),(Compare)compareString);
+    return _hashMapSearch(table,key,hashUsingModulo(key,table->size),(Compare)stringKeyCompare);
   }Catch(ex){
     Throw(ex);
   }
@@ -23,7 +30,7 @@ void *hashMapSearchString(HashTable *table,uint32_t key){
 
 void *hashMapRemoveString(HashTable *table, uint32_t key){
   Try{
-    _hashMapRemove(table,key,hashUsingModulo(key,table->size),(Compare)compareString);
+    _hashMapRemove(table,key,hashUsingModulo(key,table->size),(Compare)stringKeyCompare);
   }Catch(ex){
     Throw(ex);
   }
