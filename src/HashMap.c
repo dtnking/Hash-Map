@@ -41,30 +41,3 @@ void *_hashMapRemove(HashTable *table, uint32_t key, int index, Compare compareF
 uint32_t hashUsingModulo(uint32_t value,uint32_t range){
   return value % range;
 }
-
-// void hashMapAdd(HashTable *table,uint32_t key, void *value, int index, Compare compareFunc){
-//   //Compute hash hashValue
-//
-//   Data *data = dataCreate(key,value);
-//   int hashValue = hashUsingModulo(data->key,table->size);
-//   Try{
-//     _hashMapAdd(table,key,data,hashValue,compareFunc);
-//   }Catch(ex){
-//      Throw(ex);
-//   }
-// }
-//
-// void hashMapSearch(HashTable *table,uint32_t key,Compare compareFunc){
-//   //Compute hash hashValue
-//
-//   int hashValue = hashUsingModulo(key,table->size);
-//   _hashMapSearch(table,key,hashValue,compareFunc);
-//   //_hashMapSearch(table,data,hashValue,integerCompare)
-// }
-//
-// void hashMapRemove(HashTable *table, uint32_t key){
-//   //Compute hash hashValue
-//   //hashValue = hash(...)
-//
-//   //_hashMapRemove(table,data,hashValue,integerCompare)
-// }
