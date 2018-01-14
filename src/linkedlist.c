@@ -13,7 +13,7 @@ void listInit(LinkedList *list){
 void listAdd(LinkedList *list,Item *item,uint32_t key,Compare compareFunc){
 	Item *temp;
 	for(temp = list->head; temp!=NULL;temp = temp->next){
-		if(compareFunc((void *)key,(void *)&(((Data *)(temp->data))->key))!=NULL)
+		if(compareFunc((void *)(intptr_t)key,(void *)&(((Data *)(temp->data))->key))!=0)
 			((Data *)(temp->data))->name =((Data *)(item->data))->name;
 		}
 
@@ -35,19 +35,22 @@ void listAdd(LinkedList *list,Item *item,uint32_t key,Compare compareFunc){
 void *listSearch(LinkedList *list,uint32_t key,Compare compareFunc){
 	Item *temp;
 	for(temp = list->head; temp!=NULL;temp = temp->next)
-		if(compareFunc((void *)key,(void *)&(((Data *)(temp->data))->key)))
+		if(compareFunc((void *)(intptr_t)key,(void *)&(((Data *)(temp->data))->key)))
 			return temp->data;
+	Throw(createException("key not available in the hash table", HASH_KEY_NA));
+	  return NULL;
 }
 
 void *listRemove(LinkedList *list,uint32_t key,Compare compareFunc){
 	Item *cur = list->head;
 	Item *prev = NULL;
+	Item *temp = NULL;
 
 	if(list->head==NULL)
 		return NULL;
 
 	else{
-		while(compareFunc((void *)key,(void *)&(((Data *)(cur->data))->key))!=NULL){
+		while(compareFunc((void *)(intptr_t)key,(void *)&(((Data *)(cur->data))->key))==0){
 			prev = cur;
 			cur = cur->next;
 			}
@@ -60,9 +63,11 @@ void *listRemove(LinkedList *list,uint32_t key,Compare compareFunc){
 					listInit(list);
 				}
 				else{							// more than one data..
+					temp = cur;
 					cur = cur->next;
 					list->head = cur;
 					list->len--;
+					return temp->data;
 					}
 			}
 
